@@ -8,7 +8,7 @@ class wordBreak {
         // wordDict.add("sand");
         // wordDict.add("and");
         // wordDict.add("dog");
-        String s = "aaaaaaaaaa";
+        String s = "aaaaaaaaaaaaaaaaaaaaaaaaaaab";
         List<String> wordDict = new ArrayList<String>();
         wordDict.add("a");
         wordDict.add("aa");
