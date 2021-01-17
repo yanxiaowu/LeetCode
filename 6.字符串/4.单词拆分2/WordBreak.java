@@ -1,14 +1,7 @@
 import java.util.*;
 class wordBreak {
     public static void main(String[] args){
-        // String s = "catsanddog";
-        // List<String> wordDict = new ArrayList<String>();
-        // wordDict.add("cat");
-        // wordDict.add("cats");
-        // wordDict.add("sand");
-        // wordDict.add("and");
-        // wordDict.add("dog");
-        String s = "aaaaaaaaaaaaaaaaaaaaaaaaaaab";
+        String s = "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaabaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa";
         List<String> wordDict = new ArrayList<String>();
         wordDict.add("a");
         wordDict.add("aa");
@@ -20,14 +13,27 @@ class wordBreak {
         wordDict.add("aaaaaaaa");
         wordDict.add("aaaaaaaaa");
         wordDict.add("aaaaaaaaaa");
-        List<String> result = new ArrayList<String>();
+        List<String> result = new ArrayList<>();
         result = wordBreak(s, wordDict);
         System.out.println(result);
     }
 
     public static List<String> wordBreak(String s, List<String> wordDict) {
-        List<String> partition = new ArrayList<>();
         List<String> result = new ArrayList<>();
+        boolean[] bp = new boolean[s.length() + 1];
+        bp[0] = true;
+        for(int i = 1; i <= s.length(); i++){
+            for(int j = 0; j < i; j++){
+                if(bp[j] && wordDict.contains(s.substring(j, i))){
+                    bp[i] = true;
+                    break;
+                }
+            }
+        }
+        if(!bp[s.length()]){
+            return result;
+        }
+        List<String> partition = new ArrayList<>();
         helper(s, wordDict, partition, result, 0);
         return result;
     }
